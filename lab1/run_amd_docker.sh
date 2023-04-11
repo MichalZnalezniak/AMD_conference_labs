@@ -1,4 +1,8 @@
 #!/bin/bash
+
+dir=$(pwd)
+
+sudo docker rm $(sudo docker ps -aq --filter name=$(whoami)_amd)
 declare -A gpus=(
     # 0=renderD128 1=renderD129, 2=renderD130, 3=renderD131, 4=renderD132, 5=renderD133, 6=renderD134, 7=renderD135
     # GPU0
@@ -16,4 +20,4 @@ declare -A gpus=(
 	)
     
 echo "AMD GPU machine";
-sudo docker run -it --network=host -v /home/$(whoami)/upscalers_pytorch:/home/$(whoami)/upscalers_pytorch --env USER=$USER --device=/dev/kfd --device=/dev/dri/${gpus[$(whoami)]} --security-opt seccomp=unconfined --cap-add=SYS_PTRACE -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /home/$(whoami)/.ssh:/home/$(whoami)/.ssh:ro -v /home/$(whoami)/.jupyter:/home/$(whoami)/.jupyter --group-add video --ipc=host --shm-size 8G --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --name $(whoami)_amd --user $(id -u):$(id -g) $(whoami)_amd;
+sudo docker run -it --network=host -v /home/$(whoami)/AMD_conference_labs:/var/lib/jenkins --device=/dev/kfd --device=/dev/dri/${gpus[$(whoami)]} --security-opt seccomp=unconfined --cap-add=SYS_PTRACE --group-add video --ipc=host --shm-size 8G --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --name $(whoami)_amd rocm/pytorch;
