@@ -33,7 +33,7 @@ declare -A ports=(
         )
 conda env create --name $(whoami)_lab2 -f env.yaml
 source ~/miniconda3/bin/activate
-cond init bash
+conda init bash
 conda activate $(whoami)_lab2
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 cd stable-diffusion-webui
