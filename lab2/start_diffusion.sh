@@ -31,9 +31,9 @@ declare -A ports=(
     # GPU5
     ["user6"]=7885 # only server1
         )
-conda env create --name ${whoami}_amd -f env.yaml
-conda activate ${whoami}_amd
+conda env create --name $(whoami)_lab2 -f env.yaml
+conda activate $(whoami)_lab2
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 cd stable-diffusion-webui
-export CUDA_VISIBLE_DEVICES=${gpus[$(whoami)]}
+export HIP_VISIBLE_DEVICES=${gpus[$(whoami)]}
 python launch.py --port ${ports[$(whoami)]}
