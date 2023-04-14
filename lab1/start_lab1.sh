@@ -35,5 +35,5 @@ conda env create --name $(whoami)_lab1 -f env.yaml
 source ~/miniconda3/bin/activate
 conda init bash
 conda activate $(whoami)_lab1
-export CUDA_VISIBLE_DEVICES=${gpus[$(whoami)]}
+export HIP_VISIBLE_DEVICES=${gpus[$(whoami)]}
 jupyter notebook --port ${ports[$(whoami)]}
