@@ -1,4 +1,0 @@
-thop
-matplotlib
-scikit-learn
-notebook
